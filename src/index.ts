@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import requestModule, { RequestPromiseOptions } from "request-promise";
+import * as req from "request";
 import { evaluate, Context } from "./lib/sandbox";
 import decodeEmails from "./lib/email-decode";
 import { getDefaultHeaders, caseless } from "./lib/headers";
@@ -13,7 +14,13 @@ import Symbol from "es6-symbol";
 let debugging = false;
 const HOST = Symbol("host");
 
-async function request(params?: DefaultParams, options?: RequestPromiseOptions): Promise<string> {
+declare namespace cloudscraper {
+    interface Options<T = any> extends req.CoreOptions {
+        uri: string | req.UrlOptions;
+    }
+}
+
+async function request(options?: cloudscraper.Options, params?: DefaultParams): Promise<string> {
     const cloudscraper = defaults(params, requestModule);
     return cloudscraper(options);
 }

@@ -15,7 +15,7 @@ const errors_1 = require("./errors");
 const es6_symbol_1 = __importDefault(require("es6-symbol"));
 let debugging = false;
 const HOST = (0, es6_symbol_1.default)("host");
-async function request(params, options) {
+async function request(options, params) {
     const cloudscraper = defaults(params, request_promise_1.default);
     return cloudscraper(options);
 }

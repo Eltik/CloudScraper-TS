@@ -7,7 +7,7 @@ const body = {
     strSearchType: "series"
 }
 request({
-    url: "https://www.novelupdates.com/wp-admin/admin-ajax.php",
+    uri: "https://www.novelupdates.com/wp-admin/admin-ajax.php",
     method: "POST",
     formData: body
 }).then(res => {

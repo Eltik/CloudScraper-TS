@@ -10,7 +10,7 @@ This is pretty scuffed, so I suggest you take a look at the original GitHub page
 import request from "cloudscraper-ts"
 
 request({
-  url: "https://novelupdates.com",
+  uri: "https://novelupdates.com",
   method: "POST",
   formData: "somethinghere"
 });
