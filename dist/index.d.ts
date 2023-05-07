@@ -4,7 +4,7 @@ export default class CloudScraper {
     private HOST;
     private params;
     constructor(params: DefaultParams);
-    request(options: RequestPromiseOptions): Promise<string>;
+    request(options?: RequestPromiseOptions): Promise<string>;
     private defaults;
     private validateRequest;
     private performRequest;

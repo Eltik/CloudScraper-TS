@@ -18,7 +18,7 @@ export default class CloudScraper {
         this.params = params;
     }
 
-    public async request(options: RequestPromiseOptions): Promise<string> {
+    public async request(options?: RequestPromiseOptions): Promise<string> {
         const cloudscraper = this.defaults(this.params);
         return cloudscraper(options);
     }
