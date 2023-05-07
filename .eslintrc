@@ -1,33 +1,32 @@
 {
-  "extends": [
-    "standard",
-    "plugin:promise/recommended"
-  ],
+  "parser": "@typescript-eslint/parser",
   "plugins": [
-    "node",
-    "json"
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "semi": [2, "always"],
-    "no-trailing-spaces": [0],
-    "no-multi-spaces": [1, {
-      "exceptions": {
-        "VariableDeclarator": true
-      }
-    }]
-  },
-  "overrides": [
-    {
-      "files": ["*.ts"],
-      "parser": "@typescript-eslint/parser",
-      "extends": [
-        "standard",
-        "plugin:promise/recommended",
-        "plugin:@typescript-eslint/recommended"
-      ],
-      "rules": {
-        "semi": [2, "always"]
-      }
-    }
-  ]
+    "@typescript-eslint/ban-types": "warn",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
+    "@typescript-eslint/no-unnecessary-type-constraint": "warn",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-var-requires": "warn",
+    "no-console": "off",
+    "no-empty": "warn",
+    "no-prototype-builtins": "off",
+    "no-redeclare": "warn",
+    "no-useless-escape": "off",
+    "no-async-promise-executor": "off",
+    "prefer-const": "warn",
+    "array-bracket-spacing": ["error", "never"]
+  }
 }
