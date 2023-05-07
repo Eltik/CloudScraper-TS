@@ -1,4 +1,4 @@
-import * as original from 'request-promise-core/errors';
+import * as original from "request-promise-core/errors";
 declare class CustomError extends original.RequestError {
     errorType: number;
     constructor(cause: any, options?: any, response?: any);

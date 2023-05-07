@@ -11,9 +11,9 @@ function random(arr) {
 }
 function getChromeHeaders(options) {
     const { headers } = options;
-    headers['User-Agent'] = random(options['User-Agent']);
-    if (!brotli_1.default.isAvailable && headers['Accept-Encoding']) {
-        headers['Accept-Encoding'] = headers['Accept-Encoding'].replace(/,?\s*\bbr\b\s*/i, '');
+    headers["User-Agent"] = random(options["User-Agent"]);
+    if (!brotli_1.default.isAvailable && headers["Accept-Encoding"]) {
+        headers["Accept-Encoding"] = headers["Accept-Encoding"].replace(/,?\s*\bbr\b\s*/i, "");
     }
     return headers;
 }
@@ -24,7 +24,7 @@ function getDefaultHeaders(defaults) {
 exports.getDefaultHeaders = getDefaultHeaders;
 function caseless(headers) {
     const result = {};
-    Object.keys(headers).forEach(key => {
+    Object.keys(headers).forEach((key) => {
         result[key.toLowerCase()] = headers[key];
     });
     return result;

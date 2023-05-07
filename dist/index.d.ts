@@ -1,7 +1,7 @@
 export default class CloudScraper {
     private debugging;
     private HOST;
-    constructor();
+    constructor(params: any);
     private defaults;
     private validateRequest;
     private performRequest;

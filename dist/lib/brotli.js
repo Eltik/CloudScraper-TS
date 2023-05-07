@@ -29,23 +29,23 @@ const brotli = {
 };
 function optional(require) {
     try {
-        const decompress = require('brotli/decompress');
+        const decompress = require("brotli/decompress");
         brotli.decompress = function (buf) {
             // eslint-disable-next-line no-undef
             return Buffer.from(decompress(buf));
         };
-        return typeof decompress === 'function';
+        return typeof decompress === "function";
     }
     catch (error) {
         // Don't throw an exception if the module is not installed
-        if (error.code !== 'MODULE_NOT_FOUND') {
+        if (error.code !== "MODULE_NOT_FOUND") {
             throw error;
         }
     }
     return false;
 }
 // Check for node's built-in brotli support
-if (typeof zlib.brotliDecompressSync === 'function') {
+if (typeof zlib.brotliDecompressSync === "function") {
     brotli.decompress = function (buf) {
         return zlib.brotliDecompressSync(buf);
     };

@@ -26,10 +26,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Context = exports.evaluate = void 0;
 const vm = __importStar(require("vm"));
 const VM_OPTIONS = {
-    filename: 'iuam-challenge.js',
-    contextOrigin: 'cloudflare:iuam-challenge.js',
+    filename: "iuam-challenge.js",
+    contextOrigin: "cloudflare:iuam-challenge.js",
     contextCodeGeneration: { strings: true, wasm: false },
-    timeout: 5000
+    timeout: 5000,
 };
 // eslint-disable-next-line @typescript-eslint/no-inferrable-types
 const VM_ENV = `
@@ -68,18 +68,18 @@ exports.evaluate = evaluate;
 class Context {
     constructor(options) {
         if (!options)
-            options = { body: '', hostname: '' };
+            options = { body: "", hostname: "" };
         const atob = Object.setPrototypeOf(function (str) {
             try {
                 // eslint-disable-next-line no-undef
-                return Buffer.from(str, 'base64').toString('binary');
+                return Buffer.from(str, "base64").toString("binary");
             }
             catch (e) { }
         }, null);
         return Object.setPrototypeOf({
-            body: options.body || '',
-            href: 'http://' + (options.hostname || '') + '/',
-            atob
+            body: options.body || "",
+            href: "http://" + (options.hostname || "") + "/",
+            atob,
         }, null);
     }
 }
