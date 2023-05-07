@@ -21,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Eltik/CloudScraper.git"
+    "url": "git+https://github.com/Eltik/CloudScraper-TS.git"
   },
   "author": "eltik",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Eltik/CloudScraper/issues"
+    "url": "https://github.com/Eltik/CloudScraper-TS/issues"
   },
-  "homepage": "https://github.com/Eltik/CloudScraper#readme",
+  "homepage": "https://github.com/Eltik/CloudScraper-TS#readme",
   "dependencies": {
     "@types/request-promise": "^4.1.44",
     "@typescript-eslint/eslint-plugin": "^2.3.1",
