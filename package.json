@@ -9,7 +9,7 @@
   },
   "name": "cloudscraper-ts",
   "description": "Bypasses some anti-bot pages made by CloudFlare.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "scripts": {
     "test": "node ./test.js",
