@@ -12,7 +12,6 @@
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
-    "@typescript-eslint/no-unnecessary-type-constraint": "warn",
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-var-requires": "warn",
     "no-console": "off",

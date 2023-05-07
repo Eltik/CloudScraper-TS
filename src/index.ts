@@ -1,4 +1,4 @@
-import requestModule from "request-promise";
+import requestModule, { RequestPromiseOptions } from "request-promise";
 import { evaluate, Context } from "./lib/sandbox";
 import decodeEmails from "./lib/email-decode";
 import { getDefaultHeaders, caseless } from "./lib/headers";
@@ -12,12 +12,18 @@ import Symbol from "es6-symbol";
 export default class CloudScraper {
     private debugging = false;
     private HOST = Symbol("host");
+    private params;
 
-    constructor(params:any) {
-        return this.defaults(params);
+    constructor(params: DefaultParams) {
+        this.params = params;
     }
 
-    private defaults(params: any) {
+    public async request(options: RequestPromiseOptions): Promise<string> {
+        const cloudscraper = this.defaults(this.params);
+        return cloudscraper(options);
+    }
+
+    private defaults(params: DefaultParams) {
         let defaultParams = {
             requester: requestModule,
             // Cookies should be enabled
@@ -710,4 +716,18 @@ export default class CloudScraper {
 
         callback(null, response, body);
     }
+}
+
+interface DefaultParams {
+    requester: typeof requestModule;
+    jar: any;
+    headers: Record<string, string>;
+    cloudflareMaxTimeout: number;
+    followAllRedirects: boolean;
+    challengesToSolve: number;
+    decodeEmails: boolean;
+    gzip: boolean;
+    agentOptions: {
+        ciphers: string;
+    };
 }

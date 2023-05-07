@@ -15,8 +15,13 @@ const es6_symbol_1 = __importDefault(require("es6-symbol"));
 class CloudScraper {
     debugging = false;
     HOST = (0, es6_symbol_1.default)("host");
+    params;
     constructor(params) {
-        return this.defaults(params);
+        this.params = params;
+    }
+    async request(options) {
+        const cloudscraper = this.defaults(this.params);
+        return cloudscraper(options);
     }
     defaults(params) {
         let defaultParams = {
