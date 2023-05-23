@@ -8,7 +8,7 @@ declare namespace cloudscraper {
 export interface Options extends req.CoreOptions {
     uri: string | req.UrlOptions;
 }
-declare function request(options?: cloudscraper.Options, params?: DefaultParams): Promise<Response>;
+declare function request(options?: cloudscraper.Options, params?: DefaultParams, retries?: number): Promise<Response>;
 interface DefaultParams {
     requester: typeof requestModule;
     jar: any;

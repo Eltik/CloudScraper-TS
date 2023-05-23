@@ -15,9 +15,13 @@ const errors_1 = require("./errors");
 const es6_symbol_1 = __importDefault(require("es6-symbol"));
 let debugging = false;
 const HOST = (0, es6_symbol_1.default)("host");
-async function request(options, params) {
+async function request(options, params, retries = 0) {
     const cloudscraper = defaults(params, request_promise_1.default);
-    const response = await cloudscraper({ ...options, resolveWithFullResponse: true });
+    const response = await cloudscraper({ ...options, resolveWithFullResponse: true }).catch((err) => {
+        if (err.response.isCloudflare && retries < (params?.challengesToSolve ?? 3)) {
+            return request(options, params, retries + 1);
+        }
+    });
     return response;
 }
 function defaults(params, self) {

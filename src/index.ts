@@ -24,9 +24,13 @@ export interface Options extends req.CoreOptions {
     uri: string | req.UrlOptions;
 }
 
-async function request(options?: cloudscraper.Options, params?: DefaultParams): Promise<Response> {
+async function request(options?: cloudscraper.Options, params?: DefaultParams, retries = 0): Promise<Response> {
     const cloudscraper = defaults(params, requestModule);
-    const response = await cloudscraper({ ...options, resolveWithFullResponse: true });
+    const response = await cloudscraper({ ...options, resolveWithFullResponse: true }).catch((err) => {
+        if (err.response.isCloudflare && retries < (params?.challengesToSolve ?? 3)) {
+            return request(options, params, retries + 1);
+        }
+    });
     return response;
 }
 

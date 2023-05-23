@@ -24,28 +24,29 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const zlib = __importStar(require("zlib"));
-const brotli_1 = require("brotli");
+const decompress = __importStar(require("brotli/decompress"));
 const brotli = {
     isAvailable: false,
 };
-const optional = (require) => {
+function optional(require) {
     try {
-        brotli.decompress = (buf) => {
+        brotli.decompress = function (buf) {
             // eslint-disable-next-line no-undef
-            return Buffer.from((0, brotli_1.decompress)(buf));
+            return Buffer.from(decompress(buf));
         };
-        return typeof brotli_1.decompress === "function";
+        return typeof decompress === "function";
     }
     catch (error) {
+        // Don't throw an exception if the module is not installed
         if (error.code !== "MODULE_NOT_FOUND") {
             throw error;
         }
     }
     return false;
-};
+}
 // Check for node's built-in brotli support
 if (typeof zlib.brotliDecompressSync === "function") {
-    brotli.decompress = (buf) => {
+    brotli.decompress = function (buf) {
         return zlib.brotliDecompressSync(buf);
     };
     brotli.isAvailable = true;
