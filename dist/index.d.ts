@@ -5,7 +5,7 @@ declare namespace cloudscraper {
         uri: string | req.UrlOptions;
     }
 }
-declare function request(options?: cloudscraper.Options, params?: DefaultParams): Promise<string>;
+declare function request(options?: cloudscraper.Options, params?: DefaultParams): Promise<Response>;
 interface DefaultParams {
     requester: typeof requestModule;
     jar: any;

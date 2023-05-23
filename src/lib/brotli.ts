@@ -1,5 +1,5 @@
 import * as zlib from "zlib";
-import * as brotliDecompress from "brotli/decompress";
+import decompress from "brotli/decompress";
 
 interface Brotli {
     isAvailable: boolean;
@@ -13,7 +13,6 @@ const brotli: Brotli = {
 
 function optional(require: NodeRequire): boolean {
     try {
-        const decompress = require("brotli/decompress");
 
         brotli.decompress = function (buf: Buffer): Buffer {
             // eslint-disable-next-line no-undef

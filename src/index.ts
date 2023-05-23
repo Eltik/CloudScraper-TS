@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import requestModule, { RequestPromiseOptions } from "request-promise";
+import requestModule from "request-promise";
 import * as req from "request";
 import { evaluate, Context } from "./lib/sandbox";
 import decodeEmails from "./lib/email-decode";
@@ -20,9 +20,10 @@ declare namespace cloudscraper {
     }
 }
 
-async function request(options?: cloudscraper.Options, params?: DefaultParams): Promise<string> {
+async function request(options?: cloudscraper.Options, params?: DefaultParams): Promise<Response> {
     const cloudscraper = defaults(params, requestModule);
-    return cloudscraper(options);
+    const response = await cloudscraper({ ...options, resolveWithFullResponse: true });
+    return response;
 }
 
 function defaults(params?: DefaultParams, self?: any) {

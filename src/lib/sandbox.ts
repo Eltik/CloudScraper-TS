@@ -55,7 +55,9 @@ export class Context {
             try {
                 // eslint-disable-next-line no-undef
                 return Buffer.from(str, "base64").toString("binary");
-            } catch (e) {}
+            } catch (e) {
+                // Catch error
+            }
         }, null);
 
         return Object.setPrototypeOf(

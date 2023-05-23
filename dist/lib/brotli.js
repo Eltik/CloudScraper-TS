@@ -22,19 +22,22 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const zlib = __importStar(require("zlib"));
+const decompress_1 = __importDefault(require("brotli/decompress"));
 const brotli = {
     isAvailable: false,
 };
 function optional(require) {
     try {
-        const decompress = require("brotli/decompress");
         brotli.decompress = function (buf) {
             // eslint-disable-next-line no-undef
-            return Buffer.from(decompress(buf));
+            return Buffer.from((0, decompress_1.default)(buf));
         };
-        return typeof decompress === "function";
+        return typeof decompress_1.default === "function";
     }
     catch (error) {
         // Don't throw an exception if the module is not installed
