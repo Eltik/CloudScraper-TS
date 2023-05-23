@@ -39,23 +39,23 @@ async function request(options?: cloudscraper.Options, params?: DefaultParams, r
 
 function defaults(params?: DefaultParams, self?: any) {
     let defaultParams = {
-        requester: requestModule,
+        requester: params?.requester ?? requestModule,
         // Cookies should be enabled
-        jar: requestModule.jar(),
-        headers: getDefaultHeaders({ Host: HOST }),
+        jar: params?.jar ?? requestModule.jar(),
+        headers: params?.headers ?? getDefaultHeaders({ Host: HOST }),
         // Reduce Cloudflare's timeout to cloudflareMaxTimeout if it is excessive
-        cloudflareMaxTimeout: 30000,
+        cloudflareMaxTimeout: params?.cloudflareMaxTimeout ?? 30000,
         // followAllRedirects - follow non-GET HTTP 3xx responses as redirects
-        followAllRedirects: true,
+        followAllRedirects: params?.followAllRedirects === false ?? true,
         // Support only this max challenges in row. If CF returns more, throw an error
-        challengesToSolve: 3,
+        challengesToSolve: params?.challengesToSolve ??  3,
         // Remove Cloudflare's email protection
-        decodeEmails: false,
+        decodeEmails: params?.decodeEmails === true ?? false,
         // Support gzip encoded responses
-        gzip: true,
+        gzip: params?.gzip === false ?? true,
         agentOptions: {
             // Removes a few problematic TLSv1.0 ciphers to avoid CAPTCHA
-            ciphers: crypto.constants.defaultCipherList + ":!ECDHE+SHA:!AES128-SHA",
+            ciphers: params?.agentOptions?.ciphers ?? crypto.constants.defaultCipherList + ":!ECDHE+SHA:!AES128-SHA",
         },
     };
 
@@ -731,15 +731,15 @@ function onRequestComplete(options: { callback: any; realEncoding: any; decodeEm
 }
 
 interface DefaultParams {
-    requester: typeof requestModule;
-    jar: any;
-    headers: Record<string, string>;
-    cloudflareMaxTimeout: number;
-    followAllRedirects: boolean;
-    challengesToSolve: number;
-    decodeEmails: boolean;
-    gzip: boolean;
-    agentOptions: {
+    requester?: typeof requestModule;
+    jar?: any;
+    headers?: Record<string, string>;
+    cloudflareMaxTimeout?: number;
+    followAllRedirects?: boolean;
+    challengesToSolve?: number;
+    decodeEmails?: boolean;
+    gzip?: boolean;
+    agentOptions?: {
         ciphers: string;
     };
 }

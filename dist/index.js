@@ -30,23 +30,23 @@ async function request(options, params, retries = 0) {
 }
 function defaults(params, self) {
     let defaultParams = {
-        requester: request_promise_1.default,
+        requester: params?.requester ?? request_promise_1.default,
         // Cookies should be enabled
-        jar: request_promise_1.default.jar(),
-        headers: (0, headers_1.getDefaultHeaders)({ Host: HOST }),
+        jar: params?.jar ?? request_promise_1.default.jar(),
+        headers: params?.headers ?? (0, headers_1.getDefaultHeaders)({ Host: HOST }),
         // Reduce Cloudflare's timeout to cloudflareMaxTimeout if it is excessive
-        cloudflareMaxTimeout: 30000,
+        cloudflareMaxTimeout: params?.cloudflareMaxTimeout ?? 30000,
         // followAllRedirects - follow non-GET HTTP 3xx responses as redirects
-        followAllRedirects: true,
+        followAllRedirects: params?.followAllRedirects === false ?? true,
         // Support only this max challenges in row. If CF returns more, throw an error
-        challengesToSolve: 3,
+        challengesToSolve: params?.challengesToSolve ?? 3,
         // Remove Cloudflare's email protection
-        decodeEmails: false,
+        decodeEmails: params?.decodeEmails === true ?? false,
         // Support gzip encoded responses
-        gzip: true,
+        gzip: params?.gzip === false ?? true,
         agentOptions: {
             // Removes a few problematic TLSv1.0 ciphers to avoid CAPTCHA
-            ciphers: crypto_1.default.constants.defaultCipherList + ":!ECDHE+SHA:!AES128-SHA",
+            ciphers: params?.agentOptions?.ciphers ?? crypto_1.default.constants.defaultCipherList + ":!ECDHE+SHA:!AES128-SHA",
         },
     };
     // Object.assign requires at least nodejs v4, request only test/supports v6+

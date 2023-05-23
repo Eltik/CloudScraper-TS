@@ -10,15 +10,15 @@ export interface Options extends req.CoreOptions {
 }
 declare function request(options?: cloudscraper.Options, params?: DefaultParams, retries?: number): Promise<Response>;
 interface DefaultParams {
-    requester: typeof requestModule;
-    jar: any;
-    headers: Record<string, string>;
-    cloudflareMaxTimeout: number;
-    followAllRedirects: boolean;
-    challengesToSolve: number;
-    decodeEmails: boolean;
-    gzip: boolean;
-    agentOptions: {
+    requester?: typeof requestModule;
+    jar?: any;
+    headers?: Record<string, string>;
+    cloudflareMaxTimeout?: number;
+    followAllRedirects?: boolean;
+    challengesToSolve?: number;
+    decodeEmails?: boolean;
+    gzip?: boolean;
+    agentOptions?: {
         ciphers: string;
     };
 }
