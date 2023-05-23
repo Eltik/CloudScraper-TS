@@ -1,9 +1,12 @@
 import requestModule from "request-promise";
 import * as req from "request";
 declare namespace cloudscraper {
-    interface Options<T = any> extends req.CoreOptions {
+    interface Options extends req.CoreOptions {
         uri: string | req.UrlOptions;
     }
+}
+export interface Options extends req.CoreOptions {
+    uri: string | req.UrlOptions;
 }
 declare function request(options?: cloudscraper.Options, params?: DefaultParams): Promise<Response>;
 interface DefaultParams {

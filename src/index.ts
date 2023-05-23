@@ -15,9 +15,13 @@ let debugging = false;
 const HOST = Symbol("host");
 
 declare namespace cloudscraper {
-    interface Options<T = any> extends req.CoreOptions {
+    interface Options extends req.CoreOptions {
         uri: string | req.UrlOptions;
     }
+}
+
+export interface Options extends req.CoreOptions {
+    uri: string | req.UrlOptions;
 }
 
 async function request(options?: cloudscraper.Options, params?: DefaultParams): Promise<Response> {

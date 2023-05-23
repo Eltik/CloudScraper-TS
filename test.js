@@ -11,5 +11,5 @@ request({
     method: "POST",
     formData: body
 }).then(res => {
-    console.log(res);
+    console.log(res.body);
 });
