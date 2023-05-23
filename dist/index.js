@@ -21,6 +21,10 @@ async function request(options, params, retries = 0) {
         if (err.response.isCloudflare && retries < (params?.challengesToSolve ?? 3)) {
             return request(options, params, retries + 1);
         }
+        else {
+            // eslint-disable-next-line no-undef
+            return Promise.reject(err);
+        }
     });
     return response;
 }
